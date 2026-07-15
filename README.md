@@ -87,9 +87,16 @@ Invoke-RestMethod "http://localhost:4000/api/patients/Patient001/history?attr=he
 |---|---|---|---|
 | POST | `/api/auth/login` | — | `{username, password}` → `{token, user}` |
 | GET | `/api/health` | — | Liveness + DB connectivity |
-| GET | `/api/patients` | Bearer | All patients from `app_patients` |
+| GET | `/api/patients` | Bearer | The logged-in doctor's patients (`created_by` scoped) |
 | GET | `/api/patients/:id/latest` | Bearer | Newest value of each numeric vital (all devices) |
 | GET | `/api/patients/:id/history?attr=heartRate&limit=100` | Bearer | Time series of one attribute, oldest-first, numeric values (limit 1–1000, default 100) |
+| POST | `/api/patients` | Bearer | Create patient `{fullName, dateOfBirth?, gender?, notes?}` — id auto-generated (PatientNNN) |
+| PUT | `/api/patients/:id` | Bearer | Update patient (id immutable) |
+| DELETE | `/api/patients/:id` | Bearer | Delete patient (vitals data untouched) |
+| GET | `/api/users` | Bearer | All doctor accounts (no password hashes) |
+| POST | `/api/users` | Bearer | Create doctor `{username, password, fullName}` |
+| PUT | `/api/users/:id` | Bearer | Update doctor `{fullName?, password?}` (username immutable) |
+| DELETE | `/api/users/:id` | Bearer | Delete doctor (cannot delete own account) |
 
 Attribute names for `?attr=`: `systolicPressure`, `diastolicPressure`,
 `oxygenSaturation`, `pulseRate`, `heartRate`, `rrInterval`.
@@ -128,4 +135,9 @@ backend/
 - Patients and devices are always derived from `app_patients` and the
   `<PatientId>:<DeviceType>` entityId convention — nothing is hardcoded
   to Patient001.
+- **Patient ownership:** every patient row stores `created_by` (the doctor
+  who registered it). All patient endpoints are scoped to the logged-in
+  doctor; another doctor's patients return 404. `npm run init-db` migrates
+  older installs (adds the column, assigns unowned patients to `doctor`).
+  A doctor account that still owns patients cannot be deleted.
 # Patient_Monitoring_backend

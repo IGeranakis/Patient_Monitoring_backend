@@ -5,6 +5,7 @@ const cors = require('cors');
 const pool = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const patientRoutes = require('./routes/patientRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.get('/api/health', async (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/patients', patientRoutes);
+app.use('/api/users', userRoutes);
 
 // 404 for unknown API routes.
 app.use((req, res) => {

@@ -1,0 +1,218 @@
+{
+  "domain": {
+    "service": "hospital",
+    "subservice": "/vitals"
+  },
+  "contextBroker": {
+    "protocol": "http",
+    "host": "localhost",
+    "port": 1026,
+    "ngsiVersion": "2.0"
+  },
+  "entities": [
+    {
+      "schedule": "*/5 * * * * *",
+      "entity_name": "Patient001:BloodPressureMonitor",
+      "entity_type": "BloodPressureMonitor",
+      "staticAttributes": [
+        {
+          "name": "patientId",
+          "type": "Text",
+          "value": "Patient001"
+        },
+        {
+          "name": "deviceType",
+          "type": "Text",
+          "value": "sphygmomanometer"
+        }
+      ],
+      "active": [
+        {
+          "name": "systolicPressure",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(100,115)],[8,random(110,130)],[14,random(115,135)],[20,random(110,125)],[24,random(100,115)]], \"return\": {\"type\": \"integer\", \"rounding\": \"round\"}})"
+        },
+        {
+          "name": "diastolicPressure",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(60,70)],[8,random(70,85)],[14,random(72,88)],[20,random(68,82)],[24,random(60,70)]], \"return\": {\"type\": \"integer\", \"rounding\": \"round\"}})"
+        },
+        {
+          "name": "timeInstant",
+          "type": "DateTime",
+          "value": "date-increment-interpolator({\"origin\": \"now\", \"increment\": 0})"
+        }
+      ]
+    },
+    {
+      "schedule": "*/5 * * * * *",
+      "entity_name": "Patient001:Oximeter",
+      "entity_type": "Oximeter",
+      "staticAttributes": [
+        {
+          "name": "patientId",
+          "type": "Text",
+          "value": "Patient001"
+        },
+        {
+          "name": "deviceType",
+          "type": "Text",
+          "value": "pulse-oximeter"
+        }
+      ],
+      "active": [
+        {
+          "name": "oxygenSaturation",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(94,98)],[12,random(95,99)],[24,random(94,98)]], \"return\": {\"type\": \"integer\", \"rounding\": \"round\"}})"
+        },
+        {
+          "name": "pulseRate",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(55,70)],[8,random(65,90)],[14,random(70,95)],[22,random(60,80)],[24,random(55,70)]], \"return\": {\"type\": \"integer\", \"rounding\": \"round\"}})"
+        },
+        {
+          "name": "timeInstant",
+          "type": "DateTime",
+          "value": "date-increment-interpolator({\"origin\": \"now\", \"increment\": 0})"
+        }
+      ]
+    },
+    {
+      "schedule": "*/5 * * * * *",
+      "entity_name": "Patient001:Holter",
+      "entity_type": "Holter",
+      "staticAttributes": [
+        {
+          "name": "patientId",
+          "type": "Text",
+          "value": "Patient001"
+        },
+        {
+          "name": "deviceType",
+          "type": "Text",
+          "value": "holter-monitor"
+        }
+      ],
+      "active": [
+        {
+          "name": "heartRate",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(50,65)],[7,random(60,85)],[13,random(70,100)],[21,random(60,80)],[24,random(50,65)]], \"return\": {\"type\": \"integer\", \"rounding\": \"round\"}})"
+        },
+        {
+          "name": "rrInterval",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(0.85,1.10)],[12,random(0.65,0.90)],[24,random(0.85,1.10)]], \"return\": {\"type\": \"float\"}})"
+        },
+        {
+          "name": "timeInstant",
+          "type": "DateTime",
+          "value": "date-increment-interpolator({\"origin\": \"now\", \"increment\": 0})"
+        }
+      ]
+    },
+    {
+      "schedule": "*/5 * * * * *",
+      "entity_name": "Patient002:BloodPressureMonitor",
+      "entity_type": "BloodPressureMonitor",
+      "staticAttributes": [
+        {
+          "name": "patientId",
+          "type": "Text",
+          "value": "Patient002"
+        },
+        {
+          "name": "deviceType",
+          "type": "Text",
+          "value": "sphygmomanometer"
+        }
+      ],
+      "active": [
+        {
+          "name": "systolicPressure",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(100,115)],[8,random(110,130)],[14,random(115,135)],[20,random(110,125)],[24,random(100,115)]], \"return\": {\"type\": \"integer\", \"rounding\": \"round\"}})"
+        },
+        {
+          "name": "diastolicPressure",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(60,70)],[8,random(70,85)],[14,random(72,88)],[20,random(68,82)],[24,random(60,70)]], \"return\": {\"type\": \"integer\", \"rounding\": \"round\"}})"
+        },
+        {
+          "name": "timeInstant",
+          "type": "DateTime",
+          "value": "date-increment-interpolator({\"origin\": \"now\", \"increment\": 0})"
+        }
+      ]
+    },
+    {
+      "schedule": "*/5 * * * * *",
+      "entity_name": "Patient002:Oximeter",
+      "entity_type": "Oximeter",
+      "staticAttributes": [
+        {
+          "name": "patientId",
+          "type": "Text",
+          "value": "Patient002"
+        },
+        {
+          "name": "deviceType",
+          "type": "Text",
+          "value": "pulse-oximeter"
+        }
+      ],
+      "active": [
+        {
+          "name": "oxygenSaturation",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(94,98)],[12,random(95,99)],[24,random(94,98)]], \"return\": {\"type\": \"integer\", \"rounding\": \"round\"}})"
+        },
+        {
+          "name": "pulseRate",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(55,70)],[8,random(65,90)],[14,random(70,95)],[22,random(60,80)],[24,random(55,70)]], \"return\": {\"type\": \"integer\", \"rounding\": \"round\"}})"
+        },
+        {
+          "name": "timeInstant",
+          "type": "DateTime",
+          "value": "date-increment-interpolator({\"origin\": \"now\", \"increment\": 0})"
+        }
+      ]
+    },
+    {
+      "schedule": "*/5 * * * * *",
+      "entity_name": "Patient002:Holter",
+      "entity_type": "Holter",
+      "staticAttributes": [
+        {
+          "name": "patientId",
+          "type": "Text",
+          "value": "Patient002"
+        },
+        {
+          "name": "deviceType",
+          "type": "Text",
+          "value": "holter-monitor"
+        }
+      ],
+      "active": [
+        {
+          "name": "heartRate",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(50,65)],[7,random(60,85)],[13,random(70,100)],[21,random(60,80)],[24,random(50,65)]], \"return\": {\"type\": \"integer\", \"rounding\": \"round\"}})"
+        },
+        {
+          "name": "rrInterval",
+          "type": "Number",
+          "value": "time-random-linear-interpolator({\"spec\": [[0,random(0.85,1.10)],[12,random(0.65,0.90)],[24,random(0.85,1.10)]], \"return\": {\"type\": \"float\"}})"
+        },
+        {
+          "name": "timeInstant",
+          "type": "DateTime",
+          "value": "date-increment-interpolator({\"origin\": \"now\", \"increment\": 0})"
+        }
+      ]
+    }
+  ]
+}

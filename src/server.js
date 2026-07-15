@@ -1,5 +1,6 @@
 require('dotenv').config();
 const app = require('./app');
+const simulator = require('./simulator-manager');
 
 const PORT = Number(process.env.PORT) || 4000;
 
